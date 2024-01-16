@@ -1,25 +1,29 @@
+import {useState, useEffect} from 'react';
+import {Affix} from 'antd';
 import logo from './logo.svg';
-import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [innerShow, setInnerShow] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setInnerShow(true);
+        }, 0);
+    }, []);
+    return (<div style={{
+        height: '200vh'
+    }}>
+        <div style={{
+            height: '48px', 'background': 'blue'
+        }}></div>
+        <Affix offsetTop={48}>
+            <div>
+                {innerShow && <div style={{
+                    height: '100px', 'background': 'red'
+                }}/>}
+            </div>
+        </Affix>
+        <img src={logo} alt="logo" style={{width: '200px', height: '200px'}}/>
+    </div>);
 }
 
 export default App;
